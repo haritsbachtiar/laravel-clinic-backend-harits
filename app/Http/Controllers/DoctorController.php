@@ -43,6 +43,8 @@ class DoctorController extends Controller
             'doctor_phone' => 'required',
             'doctor_email' => 'required|email',
             'sip' => 'required',
+            'id_ihs' => 'required',
+            'nik' => 'required'
         ]);
 
         $doctor = new Doctor();
@@ -50,10 +52,19 @@ class DoctorController extends Controller
         $doctor->doctor_specialist = $request->doctor_specialist;
         $doctor->doctor_phone = $request->doctor_phone;
         $doctor->doctor_email = $request->doctor_email;
-        $doctor->photo = $request->photo;
         $doctor->address = $request->address;
         $doctor->sip = $request->sip;
+        $doctor->id_ihs = $request->id_ihs;
+        $doctor->nik = $request->nik;
         $doctor->save();
+
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $filename = $doctor->id . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/doctors', $filename);
+            $doctor->photo  = '/doctors/' . $filename;
+            $doctor->save();
+        }
 
         return redirect()->route('doctors.index')->with('success', 'Doctor created successfully.');
     }
@@ -97,7 +108,17 @@ class DoctorController extends Controller
         $doctor->photo = $request->photo;
         $doctor->address = $request->address;
         $doctor->sip = $request->sip;
+        $doctor->id_ihs = $request->id_ihs;
+        $doctor->nik = $request->nik;
         $doctor->save();
+
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $filename = $doctor->id . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/doctors', $filename);
+            $doctor->photo  = '/doctors/' . $filename;
+            $doctor->save();
+        }
 
         return redirect()->route('doctors.index')->with('success', 'Doctor updated successfully.');
     }

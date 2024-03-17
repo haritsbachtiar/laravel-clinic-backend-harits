@@ -18,6 +18,10 @@
                 <a href="{{ route('doctors.index') }}" class="nav-link"><i
                         class="fas fa-user-doctor"></i><span>Doctors</span></a>
             </li>
+            <li class="{{ $type_menu === 'doctor_schedule' ? 'active' : '' }}">
+                <a href="{{ route('doctor_schedule.index') }}" class="nav-link"><i
+                        class="fas fa-user-doctor"></i><span>Doctor Schedules</span></a>
+            </li>
         </ul>
     </aside>
 </div>
