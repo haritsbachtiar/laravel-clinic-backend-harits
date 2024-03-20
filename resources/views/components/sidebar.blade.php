@@ -20,7 +20,11 @@
             </li>
             <li class="{{ $type_menu === 'doctor_schedule' ? 'active' : '' }}">
                 <a href="{{ route('doctor_schedule.index') }}" class="nav-link"><i
-                        class="fas fa-user-doctor"></i><span>Doctor Schedules</span></a>
+                        class="fas fa-calendar-days"></i><span>Doctor Schedules</span></a>
+            </li>
+            <li class="{{ $type_menu === 'patients' ? 'active' : '' }}">
+                <a href="{{ route('patients.index') }}" class="nav-link"><i
+                        class="fas fa-hospital-user"></i><span>Patients</span></a>
             </li>
         </ul>
     </aside>
